@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "Elasticsearch MCP Server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@elastic/mcp-server-elasticsearch"
+      ],
+      "env": {
+        "ES_URL": "YOUR_ELASTICSEARCH_URL",
+        "ES_API_KEY": "YOUR_ELASTICSEARCH_API_KEY"
+      }
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "YOUR_POSTGRES_CONNECTION_STRING"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "YOUR_BRAVE_API_KEY"
+      }
+    }
+  },
+  "globalShortcut": ""
+}
