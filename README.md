@@ -1,60 +1,66 @@
-# Claude Code (Research Preview)
+# Venue Explorer
 
-![](https://img.shields.io/badge/Node.js-18%2B-brightgreen?style=flat-square) [![npm]](https://www.npmjs.com/package/@anthropic-ai/claude-code)
+A web application for exploring and filtering venue data by zipcode.
 
-[npm]: https://img.shields.io/npm/v/@anthropic-ai/claude-code.svg?style=flat-square
+## Features
 
-Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.
+- View venues on an interactive map
+- Filter venues by zipcode
+- View venue details in a table format
+- Color-coded markers for different venue types
 
-Some of its key capabilities include:
+## Getting Started
 
-- Edit files and fix bugs across your codebase
-- Answer questions about your code's architecture and logic
-- Execute and fix tests, lint, and other commands
-- Search through git history, resolve merge conflicts, and create commits and PRs
+### Prerequisites
 
-**Learn more in the [official documentation](https://docs.anthropic.com/en/docs/agents/claude-code/introduction)**.
+- Node.js 18 or higher
+- npm or yarn
+- Supabase account with venue data
+- Mapbox API key
 
-## Get started
+### Installation
 
-1. If you are new to Node.js and Node Package Manager (`npm`), then it is recommended that you configure an NPM prefix for your user.
-   Instructions on how to do this can be found [here](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#recommended-create-a-new-user-writable-npm-prefix).
-
-   *Important* We recommend installing this package as a non-privileged user, not as an administrative user like `root`.
-   Installing as a non-privileged user helps maintain your system's security and stability.
-
-2. Install Claude Code:
-   
+1. Clone the repository:
    ```sh
-   npm install -g @anthropic-ai/claude-code
+   git clone https://github.com/your-username/venue-explorer.git
+   cd venue-explorer
    ```
 
-3. Navigate to your project directory and run <code>claude</code>.
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-4. Complete the one-time OAuth process with your Anthropic Console account.
+3. Create a `.env.development` file based on `.env.example` and add your API keys:
+   ```
+   REACT_APP_SUPABASE_URL=your_supabase_url
+   REACT_APP_SUPABASE_KEY=your_supabase_key
+   REACT_APP_MAPBOX_TOKEN=your_mapbox_token
+   ```
 
-### Research Preview
+4. Start the development server:
+   ```sh
+   npm start
+   ```
 
-We're launching Claude Code as a beta product in research preview to learn directly from developers about their experiences collaborating with AI agents. Our aim is to learn more about how developers prefer to collaborate with AI tools, which development workflows benefit most from working with the agent, and how we can make the agent experience more intuitive.
+5. Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
-This is an early version of the product experience, and it's likely to evolve as we learn more about developer preferences. Claude Code is an early look into what's possible with agentic coding, and we know there are areas to improve. We plan to enhance tool execution reliability, support for long-running commands, terminal rendering, and Claude's self-knowledge of its capabilities -- as well as many other product experiences -- over the coming weeks.
+## Database Structure
 
-### Reporting Bugs
+The application expects a Supabase database with a `clean_venues` table containing the following fields:
 
-We welcome feedback during this beta period. Use the `/bug` command to report issues directly within Claude Code, or file a [GitHub issue](https://github.com/anthropics/claude-code/issues).
+- `id`: Unique identifier for the venue
+- `name`: Venue name
+- `address`: Street address
+- `city`: City
+- `state`: State
+- `zip_code`: Postal code
+- `main_classification`: Venue type/category
+- `latitude`: Geographic latitude
+- `longitude`: Geographic longitude
 
-### Data collection, usage, and retention
+## Technologies Used
 
-When you use Claude Code, we collect feedback, which includes usage data (such as code acceptance or rejections), associated conversation data, and user feedback submitted via the `/bug` command.
-
-#### How we use your data
-
-We may use feedback to improve our products and services, but we will not train generative models using your feedback from Claude Code. Given their potentially sensitive nature, we store user feedback transcripts for only 30 days.
-
-If you choose to send us feedback about Claude Code, such as transcripts of your usage, Anthropic may use that feedback to debug related issues and improve Claude Code's functionality (e.g., to reduce the risk of similar bugs occurring in the future).
-
-### Privacy safeguards
-
-We have implemented several safeguards to protect your data, including limited retention periods for sensitive information, restricted access to user session data, and clear policies against using feedback for model training.
-
-For full details, please review our [Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms) and [Privacy Policy](https://www.anthropic.com/legal/privacy).
+- React
+- Mapbox GL JS
+- Supabase

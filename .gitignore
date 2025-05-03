@@ -1,7 +1,8 @@
-# Environment variables
+# Environment variables and configuration with secrets
 .env
 .env.*
 !.env.example
+.mcp.json
 
 # Node.js
 node_modules/
@@ -30,3 +31,4 @@ logs/
 # OS specific
 .DS_Store
 Thumbs.db
+**/.claude/settings.local.json
