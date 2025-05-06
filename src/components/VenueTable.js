@@ -15,9 +15,9 @@ const VenueTable = ({ venues, loading }) => {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Rating</th>
             <th>Address</th>
             <th>City</th>
-            <th>State</th>
             <th>Zipcode</th>
             <th>Type</th>
           </tr>
@@ -25,12 +25,16 @@ const VenueTable = ({ venues, loading }) => {
         <tbody>
           {venues.map((venue) => (
             <tr key={venue.id}>
-              <td>{venue.name}</td>
-              <td>{venue.address}</td>
-              <td>{venue.city}</td>
-              <td>{venue.state}</td>
+              <td>{venue.name || 'Unnamed Venue'}</td>
+              <td>{venue.rating ? `${venue.rating.toFixed(1)} ⭐ (${venue.reviews || 0})` : 'N/A'}</td>
+              <td>{venue.address || 'No address'}</td>
+              <td>{venue.city || 'Austin'}</td>
               <td>{venue.zip_code}</td>
-              <td>{venue.main_classification || 'Unknown'}</td>
+              <td>
+                {venue.main_classification 
+                  ? venue.main_classification.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) 
+                  : 'Unknown'}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -6,19 +6,20 @@ import VenueTable from './components/VenueTable';
 import './styles/App.css';
 
 function App() {
-  const [venues, setVenues] = useState([]);
   const [filteredVenues, setFilteredVenues] = useState([]);
-  const [selectedZipcode, setSelectedZipcode] = useState('');
+  const [zipcode, setZipcode] = useState('');
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('map');
 
-  // Load venues on component mount
+  // Load venues on component mount with default zipcode 78704
   useEffect(() => {
     const loadVenues = async () => {
       try {
         setLoading(true);
-        const venueData = await getVenues();
-        setVenues(venueData);
+        // Default to zipcode 78704
+        const defaultZipcode = '78704';
+        setZipcode(defaultZipcode);
+        const venueData = await getVenues(defaultZipcode);
         setFilteredVenues(venueData);
       } catch (error) {
         console.error('Error loading venues:', error);
@@ -32,7 +33,7 @@ function App() {
 
   // Handle zipcode filter changes
   const handleZipcodeChange = async (zipcode) => {
-    setSelectedZipcode(zipcode);
+    setZipcode(zipcode);
     setLoading(true);
     
     try {
@@ -53,9 +54,9 @@ function App() {
       </header>
       
       <div className="venue-controls">
-        <ZipcodeFilter onZipcodeChange={handleZipcodeChange} />
+        <ZipcodeFilter onZipcodeChange={handleZipcodeChange} defaultZipcode={zipcode} />
         <div className="venue-count">
-          {loading ? 'Loading...' : `${filteredVenues.length} venues found`}
+          {loading ? 'Loading...' : `${filteredVenues.length} venues found in ${zipcode}`}
         </div>
       </div>
       

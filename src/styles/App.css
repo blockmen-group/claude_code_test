@@ -28,12 +28,32 @@
   margin-right: 20px;
 }
 
-.zipcode-filter select {
+.zipcode-filter form {
+  display: flex;
+  align-items: center;
+}
+
+.zipcode-filter input {
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 4px 0 0 4px;
   border: 1px solid #ccc;
   margin-left: 8px;
-  min-width: 120px;
+  width: 80px;
+  font-size: 16px;
+}
+
+.zipcode-filter button {
+  padding: 8px 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.zipcode-filter button:hover {
+  background-color: #357abD;
 }
 
 .map-container {
@@ -41,6 +61,9 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
+  height: 500px;
+  width: 100%;
+  position: relative;
 }
 
 .venue-table-container {
